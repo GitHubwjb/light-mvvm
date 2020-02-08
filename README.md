@@ -103,8 +103,12 @@ let vm = new miniVM({
 })
 
 // 通过 vm.$data.x.x 访问数据
+// 你也可以将 vm.$data 封装起来(暴露为全局)
+var This = vm.$data;
+
 function demo(){
-    vm.$data.obj.name = false
+    // vm.$data.obj.name = false (X)
+    This.obj.name = false
 }
 
 </script>
