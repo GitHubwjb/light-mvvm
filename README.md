@@ -16,10 +16,12 @@
 # Type the command in the terminal to get the source bao
 npm install light-mvvm
 ```
+注意：在此之前请先创建`node_modules`文件夹，然后再以 npm 命令安装 light-mvvm。
 ```bash
 # Introduce the main.js file in the source package
 <script src="./main.js"></script>
 ```
+注意：在本仓库下载源码后，你可以放在项目任意文件夹中，确保引入`main.js`即可。
 无论以哪种方式，你都会获得源码包，目录结构如下：
 ```
 ┌─@compile
