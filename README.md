@@ -16,7 +16,7 @@
 # Type the command in the terminal to get the source bao
 npm install light-mvvm
 ```
-注意：请务必先创建`node_modules`文件夹，然后再以 npm 命令安装 light-mvvm。
+注意：请务必先创建 `node_modules` 文件夹(否则无法安装)，然后再以 npm 命令安装 light-mvvm。
 ```bash
 # Introduce the main.js file in the source package
 <script src="./main.js"></script>
@@ -42,8 +42,14 @@ npm install light-mvvm
 ## 怎么使用？
 > 引入 light-mvvm 源码包下 main.js，然后以 Vue 语法构建应用。
 
-把你手中的 light-mvvm 源码包放到项目合适的位置，然后在想用 light-mvvm 的文件中引入源码包中的 `main.js(请尽量确保在顶部)` ，此时打开浏览器并刷新，如果弹出提示框即为成功，祝你好运。
-
+```html
+# 😊 npm:
+<script src="node_modules/light-mvvm/main.js"></script>
+```
+```html
+# 😊 script:
+<script src="XXX/light-mvvm/main.js"></script>
+```
 以下是一个简易 demo ，用于演示如何使用 light-mvvm :
 
 ```html
