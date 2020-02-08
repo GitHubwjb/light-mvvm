@@ -10,20 +10,14 @@
 
 前端项目一般基于 `Angular/React/Vue` 构建，但有些项目所用技术栈无需基于完整的框架解决方案而是仅仅需要不操作 DOM 或双向数据绑定，再或者应用于简单的 from 表单也是非常适合，因为 light-mvvm 非常小，不会让你陷入引入大框架后造成大材小用局面，不引入又不能优雅构建应用的问题。
 ## 怎么安装？
-> 你可以使用 npm 安装，也可以克隆下载仓库源码直接 &lt;script&gt; 引入。
+> 推荐使用 npm 直接安装，也可以下载仓库源码。
 
 ```bash
-# Type the command in the terminal to get the source bao
 npm install light-mvvm
 ```
 注意：请务必先创建 `node_modules` 文件夹(否则无法安装)，然后再以 npm 命令安装 light-mvvm。
-```bash
-# Introduce the main.js file in the source package
-<script src="./main.js"></script>
-```
-注意：在本仓库下载源码后，你可以放在项目任意文件夹中，确保引入 `main.js` 即可。
 
-无论以哪种方式，你都会获得源码包，目录结构如下：
+你会获得源码包，目录结构如下：
 ```
 ┌─@compile
 │  └─compile.js
@@ -43,14 +37,10 @@ npm install light-mvvm
 > 引入 light-mvvm 源码包下 main.js，然后以 Vue 语法构建应用。
 
 ```html
-# 😊 npm:
 <script src="node_modules/light-mvvm/main.js"></script>
 ```
-```html
-# 😊 script:
-<script src="XXX/light-mvvm/main.js"></script>
-```
-以下是一个简易 demo ，用于演示如何使用 light-mvvm :
+
+😊 成功引入后，你将使用以下语法来构建你的应用：
 
 ```html
 # HTML
@@ -58,6 +48,7 @@ npm install light-mvvm
 <div id="app">
     <input type="text" v-model="test">
     <h3>{{test}}</h3>
+    <div>{{obj.name}}</div>
 </div>
 ```
 ```javascript
@@ -66,14 +57,62 @@ npm install light-mvvm
 let vm = new miniVM({
     el: '#app',
     data: {
-        test: 'hello, light-mvvm'
+        test: 'hello, light-mvvm',
+        obj: {
+            name: true
+        }
     }
 })
 ```
-对了，别忘了去 light-mvvm 源码包下的 main.js 中注释掉测试环境的弹框代码。
 
->如果你还是不会使用 light-mvvm，请访问 vue 官网文档教程。
-## 注意事项(潜在bug)
+😊 Come on！让我们完成一个麻雀虽小五脏俱全的应用吧！
+
+![markdown](https://img-blog.csdnimg.cn/20200208145800193.gif "markdown")
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- 引入 light-mvvm => main.js -->
+    <script src="node_modules/light-mvvm/main.js"></script>
+</head>
+<body>
+
+    <!-- 注意：插值表达式{{ a }}请不要包裹空格,也不支持计算{{a+1}} -->
+    <div id="app">
+        <input type="text" v-model="test">
+        <h3>{{test}}</h3>
+        <div>{{obj.name}}</div>
+        <button onclick="demo()">Go!</button>
+    </div>
+
+<script>
+
+// 初始化 vm 实例
+let vm = new miniVM({
+    // 允许通过 document.getElementById() 获取根
+    el: '#app',
+    data: {
+        test: 'hello, light-mvvm',
+        obj: {
+            name: true
+        }
+    }
+    // light-mvvm 提倡把方法挂载到实例外面(这样更轻/更符合场景)
+})
+
+// 通过 vm.$data.x.x 访问数据
+function demo(){
+    vm.$data.obj.name = false
+}
+
+</script>
+</body>
+</html>
+```
+
+## 注意事项
 ****
 1. 键入插值表达式时，请不要包裹空格，否则无法识别。正确： `{{message}}` ，错误： `{{ message }}` 。——【light-mvvm v1.0】
 ****
